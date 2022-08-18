@@ -14,7 +14,7 @@ class Product extends Model
     protected $table = 'products';
     public function versions()
     {
-        return $this-> belongsTo(Version::class,'version_id','id');
+        return $this-> belongsTo(Vesion::class,'version_id','id');
     }
     public function services()
     {
