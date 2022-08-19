@@ -12,5 +12,6 @@
 ### 5. Create factory: "php artisan db:seed --class=nameSeeder"
 
 ## SQL
+link Database: https://drive.google.com/file/d/1VLkbAIbK3e1edBzQ6jKkCb_PuUBBr6Ce/view?usp=sharing
 
 The link [Firebase](https://console.firebase.google.com/project/phone-images-c317e/storage/phone-images-c317e.appspot.com/files).
