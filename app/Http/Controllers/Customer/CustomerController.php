@@ -16,7 +16,7 @@ class CustomerController extends Controller
      */
     public function index()
     {
-        $customers = Customer::join('products', 'products.id', 'customers.product_id')
+        $customers = Customer::leftJoin('products', 'products.id', 'customers.product_id')
         ->select('products.product_name', 'customers.*')
         ->get();
         if ($customers) {
@@ -42,9 +42,37 @@ class CustomerController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $req)
     {
-        //
+        $req->validate([
+            'cus_name' =>'required',
+            'cusphone_number'=>'required',
+            'repair_day'=>'required', 
+            'received_day'=>'required', 
+            'phone_name'=>'required', 
+            'phone_emei'=>'required',
+            'model'=>'required',             
+        ],[
+            'cus_name.required' => 'Bạn chưa nhập họ tên',
+            'phone_name.required' =>'Bạn chưa nhập tên điện thoại',
+            'repair_day.required' =>'Bạn chưa ngày sửa',
+            'received_day.required' =>'Bạn chưa nhập ngày nhận',
+            'phone_emei.required' =>'Bạn chưa nhập số emei',
+            'model.required' =>'Bạn chưa nhập model',
+            'cusphone_number.required' =>'Bạn chưa nhập số điện thoại',
+        ]);
+
+        $cus = new Customer();
+        $cus->cus_name=$req->cus_name;
+        $cus->phone_name=$req->phone_name;
+        $cus->repair_day=$req->repair_day;
+        $cus->received_day=$req->received_day;
+        $cus->phone_emei=$req->phone_emei;
+        $cus->model=$req->model;
+        $cus->cusphone_number=$req->cusphone_number;
+        if (!empty($req->note)) $cus->note=$req->note;
+        $cus->save();
+        return response()->json($cus, 201);
     }
 
     /**

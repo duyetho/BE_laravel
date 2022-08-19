@@ -26,11 +26,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::resource('/products',ProductController::class);
-// Route::get('/products',[ProductController::class,'index']);
-// Route::get('/products/{id}',[ProductController::class,'show']);
-// Route::DELETE('/delete-product/{id}',[ProductController::class,'destroy']);
-// Route::put('/update-product/{id}',[ProductController::class,'update']);
-// Route::put('/products',[ProductController::class,'store']);
 
 Route::get('/admin',[AdminController::class,'index']);
 
@@ -39,6 +34,7 @@ Route::post('/versions',[VersionController::class,'store']);
 Route::delete('/versions/{version}',[VersionController::class,'destroy']);
 
 Route::get('/customers',[CustomerController::class,'index']);
+Route::post('/customers',[CustomerController::class,'store']);
 Route::get('/customers/{id}',[CustomerController::class,'show']);
 Route::DELETE('/delete-customer/{id}',[CustomerController::class,'destroy']);
 
@@ -50,4 +46,3 @@ Route::delete('/q_a/{qa}', [QAController::class, 'destroy']);
 
 Route::get("services", [ServiceController::class, "getAllServices"]);
 Route::get("service/{id}", [ServiceController::class, "getProductsByServiceId"]);
-// Route::resource('/q&a',[QAController::class]);
